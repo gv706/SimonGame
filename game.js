@@ -52,12 +52,13 @@ function checkAnswer(index){
     }
     else{
         makeSound("wrong");
+        $("#start").show();  
       $("body").addClass("game-over");
       gamePattern=[];
       clickedPattern=[];
       level=0;
       $(".btn").off("click");
-      $("#level-title").text("Game Over, Press Any Key to Restart");
+      $("#level-title").text("Game Over, Press Start Button to Restart");
       notstarted=true;
       setTimeout(function(){
           $("body").css("background-color","#011F3F");
