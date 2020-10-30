@@ -3,9 +3,11 @@ var gamePattern = [];
 var clickedPattern=[];
 var notstarted=true;
 var level=0;
-$(document).on("keypress",function(event){
-	if(notstarted){
-  notstarted=false;
+$("#start").on("click",function(event){
+  if(notstarted){
+   $("#start").hide(); 
+   
+      notstarted=false;
   nextSequence();
   $(".btn").on("click",function(){
   var userChosenColor=$(this).attr("id");
@@ -14,11 +16,13 @@ $(document).on("keypress",function(event){
   animatePress(userChosenColor);
   checkAnswer(clickedPattern.length-1);
   });
+  
+ 
  }
 });
 function nextSequence() {
   level=level+1;
-  $("#level-title").text("Level "+level);	
+  $("#level-title").text("Level "+level); 
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -26,7 +30,7 @@ function nextSequence() {
    makeSound(randomChosenColour);
 }
 function makeSound(colour){
-	 var audio = new Audio("sounds/" + colour + ".mp3");
+   var audio = new Audio("sounds/" + colour + ".mp3");
      audio.play();
 }
 function animatePress(currentColor){
@@ -37,26 +41,26 @@ function animatePress(currentColor){
 }
 function checkAnswer(index){
    if(gamePattern[index]===clickedPattern[index])
-   	{
+    {
       if(gamePattern.length===clickedPattern.length)
       {
-      	clickedPattern=[];
-      	setTimeout(function () {
+        clickedPattern=[];
+        setTimeout(function () {
           nextSequence();
         }, 1000);
       }
-   	}
-   	else{
+    }
+    else{
         makeSound("wrong");
-   		$("body").addClass("game-over");
-   		gamePattern=[];
-   		clickedPattern=[];
-   		level=0;
-   		$(".btn").off("click");
-   		$("#level-title").text("Game Over, Press Any Key to Restart");
-   		notstarted=true;
-   		setTimeout(function(){
+      $("body").addClass("game-over");
+      gamePattern=[];
+      clickedPattern=[];
+      level=0;
+      $(".btn").off("click");
+      $("#level-title").text("Game Over, Press Any Key to Restart");
+      notstarted=true;
+      setTimeout(function(){
           $("body").css("background-color","#011F3F");
-   		},200)
-   	}
+      },200)
+    }
 }
