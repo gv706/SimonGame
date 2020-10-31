@@ -59,6 +59,7 @@ function checkAnswer(index){
       level=0;
       $(".btn").off("click");
       $("#level-title").text("Game Over, Press Start Button to Restart");
+       $("body").removeClass("game-over");
       notstarted=true;
       setTimeout(function(){
           $("body").css("background-color","#011F3F");
