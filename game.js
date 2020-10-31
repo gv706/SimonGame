@@ -54,12 +54,14 @@ function checkAnswer(index){
         makeSound("wrong");
         $("#start").show();  
       $("body").addClass("game-over");
+      setTimeout(function(){
+           $("body").removeClass("game-over");
+      },200)
       gamePattern=[];
       clickedPattern=[];
       level=0;
       $(".btn").off("click");
       $("#level-title").text("Game Over, Press Start Button to Restart");
-       $("body").removeClass("game-over");
       notstarted=true;
       setTimeout(function(){
           $("body").css("background-color","#011F3F");
