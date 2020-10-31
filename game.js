@@ -54,9 +54,6 @@ function checkAnswer(index){
         makeSound("wrong");
         $("#start").show();  
       $("body").addClass("game-over");
-      setTimeout(function(){
-           $("body").removeClass("game-over");
-      },200)
       gamePattern=[];
       clickedPattern=[];
       level=0;
